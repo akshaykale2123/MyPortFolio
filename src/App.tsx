@@ -9,6 +9,7 @@ import SkillsSection from './sections/SkillsSection';
 import './App.css';
 import './index.css';
 
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [visibleSections, setVisibleSections] = useState(new Set<string>());
