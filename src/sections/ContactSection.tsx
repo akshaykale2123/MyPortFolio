@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, Linkedin, X, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
@@ -13,6 +13,22 @@ export default function ContactSection() {
     const [formData, setFormData] = useState({ email: '', message: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    useEffect(() => {
+        // Log all EmailJS configuration
+        console.log({
+            SERVICE_ID,
+            TEMPLATE_YOU_ID,
+            TEMPLATE_USER_ID,
+            PUBLIC_KEY
+        });
+
+        // Check if any keys are missing
+        if (!SERVICE_ID || !TEMPLATE_YOU_ID || !TEMPLATE_USER_ID || !PUBLIC_KEY) {
+            console.error('Missing EmailJS environment variables!');
+        }
+    }, []);
+
+
     const handleSubmit = async () => {
         if (!formData.email || !formData.message) {
             alert('Please fill in all fields');
@@ -25,7 +41,7 @@ export default function ContactSection() {
             // Send email to you
             await emailjs.send(
                 SERVICE_ID!,
-                TEMPLATE_YOU_ID!,
+                TEMPLATE_USER_ID!,
                 {
                     from_email: formData.email,
                     message: formData.message,
@@ -37,7 +53,7 @@ export default function ContactSection() {
             // Send auto-reply to user
             await emailjs.send(
                 SERVICE_ID!,
-                TEMPLATE_USER_ID!,
+                TEMPLATE_YOU_ID!,
                 {
                     to_email: formData.email,
                     reply_message: `Thanks for reaching out! I will get back to you soon.`
