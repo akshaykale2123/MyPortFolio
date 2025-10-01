@@ -127,7 +127,7 @@ export default function Portfolio() {
 
             {/* Footer */}
             <footer className="py-8 px-4 bg-slate-900 text-center text-slate-400">
-                <p>© 2025 Akshay Kale. All rights reserved.</p>
+                <p>© {new Date().getFullYear()} Akshay Kale. All rights reserved.</p>
             </footer>
         </div>
     );
