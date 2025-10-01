@@ -28,7 +28,8 @@ export default function ContactSection() {
                 TEMPLATE_YOU_ID!,
                 {
                     from_email: formData.email,
-                    message: formData.message
+                    message: formData.message,
+                    email: 'akshaykale2123@gmail.com'
                 },
                 PUBLIC_KEY
             );
